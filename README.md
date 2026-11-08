@@ -24,16 +24,16 @@ transfers through the `usb_device_t`'s host-controller ops.  Firmware
 **Recommended — full workspace**
 
 ```sh
-ninja -C CactOS-x86_32/build-meson stage
+ninja -C CactOS-x86_64/build-meson stage
 ```
 
 **Standalone**
 
 ```sh
-meson setup build-meson --cross-file cross/i686-cact-clang.ini \
-    -Dkern_root=../CactKernel-x86_32 -Dlocal_repo=../LocalRepoCactOS-x86_32
+meson setup build-meson --cross-file cross/x86_64-cact-clang.ini \
+    -Dkern_root=../CactKernel-x86_64 -Dlocal_repo=../LocalRepoCactOS-x86_64
 ninja -C build-meson          # → build-meson/rt2800usb.cctk
-ninja -C build-meson stage    # copy into ../LocalRepoCactOS-x86_32/lib/
+ninja -C build-meson stage    # copy into ../LocalRepoCactOS-x86_64/lib/
 ```
 
 Override paths with `meson configure build-meson -Dkern_root=… -Dlocal_repo=…`.

@@ -2,8 +2,8 @@
 # rt2800usb module — Meson build system
 # ==============================================================================
 #
-#   meson setup build-meson --cross-file cross/i686-cact-clang.ini \
-#       -Dkern_root=../CactKernel-x86_32 -Dlocal_repo=../LocalRepoCactOS-x86_32
+#   meson setup build-meson --cross-file cross/x86_64-cact-clang.ini \
+#       -Dkern_root=../CactKernel-x86_64 -Dlocal_repo=../LocalRepoCactOS-x86_64
 #   ninja -C build-meson          # build-meson/rt2800usb.cctk
 #   ninja -C build-meson stage    # copy into <local_repo>/lib
 #
@@ -79,9 +79,9 @@ rt2800usb_cctk = custom_target('rt2800usb.cctk',
     'out="$1"; shift; ' +
     'd=$(mktemp -d); ' +
     'for f in "$@"; do ' +
-      _cc_cmd + ' -m32 ' + _args + ' -c "$f" -o "$d/$(basename "$f" .c).o"; ' +
+      _cc_cmd + ' -m64 ' + _args + ' -c "$f" -o "$d/$(basename "$f" .c).o"; ' +
     'done; ' +
-    _cc_cmd + ' -m32 -nostdlib -r "$d"/*.o -o "$out"; ' +
+    _cc_cmd + ' -m64 -nostdlib -r "$d"/*.o -o "$out"; ' +
     'rm -rf "$d"'),
     'bash', '@OUTPUT@', '@INPUT@'],
   build_by_default: true)
