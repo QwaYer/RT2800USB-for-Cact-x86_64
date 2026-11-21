@@ -49,6 +49,14 @@ mod_c_args = [
   '-fno-pie',
   '-fno-stack-protector',
   '-nostdlib',
+  # The image is relocated in the top-half module window, within ±2 GiB of the
+  # kernel, so clang has to assume the kernel code model: calls become 32-bit
+  # PC-relative (R_X86_64_PLT32) and symbol references sign-extended 32-bit
+  # (R_X86_64_32S).  The default small model emits zero-extended R_X86_64_32
+  # and would relocate into the wrong addresses.
+  '-mcmodel=kernel',
+  # Interrupt handlers run on the interrupted stack; the red zone is not ours.
+  '-mno-red-zone',
   # Ring 0: the kernel has not enabled SSE for itself, so clang must not lower
   # struct copies to SSE2 (the same trap the kernel build hits).
   '-mno-mmx',
