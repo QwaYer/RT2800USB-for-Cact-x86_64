@@ -9,7 +9,7 @@ loader** (`Cact/drivers/usb/loader/usb_mod.c`).  It exports `usb_driver_init()`,
 which calls the ksym-exported `usb_driver_register()` with a `usb_driver_t` for
 the Ralink USB IDs; the driver's `probe()` runs the device bring-up and drives
 transfers through the `usb_device_t`'s host-controller ops.  Firmware
-(`rt2870.bin`) is staged out of cctkfs with the kernel's `request_firmware()`.
+(`rt2870.bin`) is staged out of localbinrepo with the kernel's `request_firmware()`.
 
 > **Status:** hardware bring-up is in — MCU firmware upload, EEPROM/MAC read,
 > MAC/BBP/RF init, 2.4 GHz channel tuning and the bulk-endpoint TX/RX rings.

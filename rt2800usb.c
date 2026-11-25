@@ -4,7 +4,7 @@
  * Loaded with `modload /lib/rt2800usb.cctk`; usb_driver_init() registers the
  * driver for the Ralink USB IDs and probe() runs the bring-up.  Transfers go
  * through the usb_device_t's host-controller ops; the firmware blob is staged
- * out of cctkfs with request_firmware().  Registered drivers are offered the
+ * out of localbinrepo with request_firmware().  Registered drivers are offered the
  * devices already enumerated when the module is loaded, so the dongle may be
  * plugged in before or after modload.
  *
